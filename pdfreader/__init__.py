@@ -8,9 +8,9 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE=os.path.join(app.instance_path, 'pdfreader.sqlite'),
-    )
-
+        DATABASE=os.path.join(app.instance_path,'pdfreader.sqlite'),
+        TEMP=os.path.join(app.instance_path,'tempo.pdf'))
+    
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
@@ -29,10 +29,14 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
-    from . import db
+    from pdfreader.database import db
     db.init_app(app)
 
     from . import upload_pdf
     app.register_blueprint(upload_pdf.bp)
+
+    from . import read_pdf
+    app.register_blueprint(read_pdf.bp)
+    app.add_url_rule('/', endpoint='index')
 
     return app

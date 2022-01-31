@@ -1,0 +1,4 @@
+include pdfreader/database/schema.sql
+graft pdfreader/static
+graft pdfreader/templates
+global-exclude *.pyc

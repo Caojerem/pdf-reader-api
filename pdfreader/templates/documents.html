@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Uploader un PDF{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post" enctype=multipart/form-data>
+    <label for="pdf_url">Chargez un PDF</label>
+    <input type="file" name="pdf_file">
+    <input type="submit" value="Upload">
+  </form>
+{% endblock %}
