@@ -1,0 +1,52 @@
+openapi: 3.0.0
+info:
+  title: text
+  version: '1.0'
+servers:
+  - url: 'http://127.0.0.1:5000/'
+paths:
+  '/text/{id}':
+    parameters:
+      - schema:
+          type: integer
+        name: id
+        in: path
+        required: true
+    get:
+      summary: text
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  customer_id:
+                    type: integer
+                  customer_name:
+                    type: string
+      operationId: get-text-id
+      description: Retrieve a specific text by ID
+  components:
+  schemas: {}
+paths:
+'/documents':
+    post:
+      summary: document
+      operationId: post-document
+      responses:
+        '201':
+          description: Created
+      description: Add a new document record
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+components:
+  schemas: {}
